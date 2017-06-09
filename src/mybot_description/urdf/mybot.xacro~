@@ -1,0 +1,411 @@
+<?xml version='1.0'?>
+
+<robot name="myrobot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+   <xacro:property name="cameraSize" value="0.05"/>
+  <xacro:property name="cameraMass" value="0.1"/>
+
+  <xacro:include filename="$(find mybot_description)/urdf/mybot.gazebo" />
+  <xacro:include filename="$(find mybot_description)/urdf/materials.xacro" />
+  <xacro:include filename="$(find mybot_description)/urdf/macros.xacro" />
+
+
+  <link name='chassis'>
+    <pose>0 0 0.1 0 0 0</pose>
+
+    <inertial>
+      <mass value="40.0"/>
+      <origin xyz="0 0.35 -0.05" rpy="1.5707 0 0"/>
+      <inertia ixx="0.3338" ixy="0.0" ixz="0.0" iyy="0.4783" iyz="0.0" izz="0.3338"/>
+    </inertial>
+
+    <collision name='collision'>
+      <origin xyz="0 0 0" rpy="0 0 1.5707"/>
+      <geometry>
+        <mesh filename="package://mybot_description/meshes/base_link.dae"/> 
+      </geometry>
+    </collision>
+
+    <visual name='chassis_visual'>
+      <origin xyz="0 0.35 -0.05" rpy="1.5707 0 0"/>
+      <geometry>
+        <mesh filename="package://mybot_description/meshes/base_link.dae"/> 
+      </geometry>
+      <material name="ChassisRed">
+        <color rgba="0.851 0.0 0.0 1.0"/>
+      </material>
+    </visual>
+  </link>
+  <gazebo reference="chassis">
+    <material value="Gazebo/Red"/>
+  </gazebo>
+
+  <link name="front_left_hub">
+
+    <collision name="collision">
+      <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
+      <geometry>
+        <mesh filename="package://mybot_description/meshes/int3.dae"/> 
+      </geometry>
+    </collision>
+    <visual name="front_left_hub_visual">
+      <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
+      <geometry>
+        <mesh filename="package://mybot_description/meshes/int3.dae"/> 
+      </geometry>
+    </visual>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
+      <mass value="2"/>
+      <cylinder_inertia m="0.1" r="0.175" h="0.8"/>
+      <inertia ixx="0.012411765597" ixy="0" ixz="0" iyy="0.015218160428" iyz="0" izz="0.011763977943"/>
+    </inertial>
+  </link> 
+  <gazebo reference="front_left_hub">
+    <material value="Gazebo/Red"/>
+  </gazebo>
+
+ <link name="front_left_wheel">
+    <!--origin xyz="0.1 0.13 0.1" rpy="0 1.5707 1.5707"/-->
+    <collision name="collision">
+      <origin xyz="0 0 0" rpy="0 0 1.5707"/>
+      <geometry>
+        <mesh filename="package://mybot_description/meshes/rear.dae"/> 
+      </geometry>
+    </collision>
+    <visual name="front_left_wheel_visual">
+      <origin xyz="0 0 0" rpy="0 0 1.5707"/>
+      <geometry>
+        <mesh filename="package://mybot_description/meshes/rear.dae"/> 
+      </geometry>
+    </visual>
+    <inertial>
+      <origin xyz="0 0 0" rpy="1.5707 1.5707 1.5707"/>
+      <mass value="2"/>
+      <cylinder_inertia m="2" r="0.175" h="0.8"/>
+      <inertia ixx="0.012411765597" ixy="0" ixz="0" iyy="0.015218160428" iyz="0" izz="0.011763977943"/>
+    </inertial>
+  </link>
+
+  <link name="front_right_hub">
+
+    <collision name="collision">
+      <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
+      <geometry>
+        <mesh filename="package://mybot_description/meshes/int3.dae"/> 
+      </geometry>
+    </collision>
+    <visual name="front_right_hub_visual">
+      <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
+      <geometry>
+        <mesh filename="package://mybot_description/meshes/int3.dae"/> 
+      </geometry>
+    </visual>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
+      <mass value="2"/>
+      <cylinder_inertia m="0.1" r="0.175" h="0.8"/>
+      <inertia ixx="0.012411765597" ixy="0" ixz="0" iyy="0.015218160428" iyz="0" izz="0.011763977943"/>
+    </inertial>
+  </link>
+    <gazebo reference="front_right_hub">
+    <material value="Gazebo/Red"/>
+  </gazebo>
+
+  <link name="front_right_wheel">
+    <!--origin xyz="0.1 -0.13 0.1" rpy="0 1.5707 1.5707"/-->
+    <collision name="collision">
+      <origin xyz="0 0 0" rpy="0 0 1.5707"/>
+      <geometry>
+        <mesh filename="package://mybot_description/meshes/rear.dae"/> 
+      </geometry>
+    </collision>
+    <visual name="front_right_wheel_visual">
+      <origin xyz="0 0 0" rpy="0 0 1.5707"/>
+      <geometry>
+        <mesh filename="package://mybot_description/meshes/rear.dae"/> 
+      </geometry>
+    </visual>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
+      <mass value="2"/>
+      <cylinder_inertia m="2" r="0.175" h="0.08"/>
+      <inertia ixx="0.012411765597" ixy="0" ixz="0" iyy="0.015218160428" iyz="0" izz="0.011763977943"/>
+    </inertial>
+  </link>
+
+  <link name="back_left_hub">
+
+    <collision name="collision">
+      <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
+      <geometry>
+        <mesh filename="package://mybot_description/meshes/int3.dae"/> 
+      </geometry>
+    </collision>
+    <visual name="back_left_hub_visual">
+      <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
+      <geometry>
+        <mesh filename="package://mybot_description/meshes/int3.dae"/> 
+      </geometry>
+    </visual>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
+      <mass value="2"/>
+      <cylinder_inertia m="0.1" r="0.175" h="0.8"/>
+      <inertia ixx="0.012411765597" ixy="0" ixz="0" iyy="0.015218160428" iyz="0" izz="0.011763977943"/>
+    </inertial>
+  </link>
+  <gazebo reference="back_left_hub">
+    <material value="Gazebo/Red"/>
+  </gazebo>
+
+    <link name="back_left_wheel">
+    <!--origin xyz="0.1 0.13 0.1" rpy="0 1.5707 1.5707"/-->
+    <collision name="collision">
+      <origin xyz="0 0 0" rpy="0 0 1.5707"/>
+      <geometry>
+        <mesh filename="package://mybot_description/meshes/rear.dae"/> 
+      </geometry>
+    </collision>
+    <visual name="back_left_wheel_visual">
+      <origin xyz="0 0 0" rpy="0 0 1.5707"/>
+      <geometry>
+        <mesh filename="package://mybot_description/meshes/rear.dae"/> 
+      </geometry>
+    </visual>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
+      <mass value="2"/>
+      <cylinder_inertia m="2" r="0.175" h="0.08"/>
+      <inertia ixx="0.012411765597" ixy="0" ixz="0" iyy="0.015218160428" iyz="0" izz="0.011763977943"/>
+    </inertial>
+  </link>
+
+  <link name="back_right_hub">
+
+    <collision name="collision">
+      <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
+      <geometry>
+        <mesh filename="package://mybot_description/meshes/int3.dae"/> 
+      </geometry>
+    </collision>
+    <visual name="back_right_hub_visual">
+      <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
+      <geometry>
+        <mesh filename="package://mybot_description/meshes/int3.dae"/> 
+      </geometry>
+    </visual>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 1.5707"/>
+      <mass value="2"/>
+      <cylinder_inertia m="0.1" r="0.175" h="0.8"/>
+      <inertia ixx="0.012411765597" ixy="0" ixz="0" iyy="0.015218160428" iyz="0" izz="0.011763977943"/>
+    </inertial>
+  </link>
+  <gazebo reference="back_right_hub">
+    <material value="Gazebo/Red"/>
+  </gazebo>
+
+  <link name="back_right_wheel">
+    <!--origin xyz="0.1 -0.13 0.1" rpy="0 1.5707 1.5707"/-->
+    <collision name="collision">
+      <origin xyz="0 0 0" rpy="0 0 1.5707"/>
+      <geometry>
+        <mesh filename="package://mybot_description/meshes/rear.dae"/> 
+      </geometry>
+    </collision>
+    <visual name="back_right_wheel_visual">
+      <origin xyz="0 0 0" rpy="0 0 1.5707"/>
+      <geometry>
+        <mesh filename="package://mybot_description/meshes/rear.dae"/>
+      </geometry>
+    </visual>
+
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
+      <mass value="2"/>
+      <cylinder_inertia m="2" r="0.175" h="0.08"/>
+      <inertia ixx="0.012411765597" ixy="0" ixz="0" iyy="0.015218160428" iyz="0" izz="0.011763977943"/>
+    </inertial>
+  </link>
+
+
+
+  <gazebo reference="back_left_wheel">
+    <kp>1000000.0</kp>
+    <!-- kp and kd for rubber -->
+    <kd>100.0</kd>
+    <mu1>1.0</mu1>
+    <!-- was 10 -->
+    <mu2>1.0</mu2>
+    <!-- how to get these into <surface><friction><ode>... ?
+        slip1 0.5 /slip1 
+         slip2 0 /slip2 
+      -->
+    <!-- fdir1 0 1 0 /fdir1 -->
+    <!-- see http://github.com/MobileRobots/amr-ros-config/issues/6 -->
+    <maxVel>1.0</maxVel>
+    <minDepth>0.00</minDepth>
+    <material value="Gazebo/Black"/>
+  </gazebo>
+  <gazebo reference="front_left_wheel">
+    <kp>1000000.0</kp>
+    <!-- kp and kd for rubber -->
+    <kd>100.0</kd>
+    <mu1>1.0</mu1>
+    <!-- was 10 -->
+    <mu2>1.0</mu2>
+    <!-- how to get these into <surface><friction><ode>... ?
+        slip1 0.5 /slip1 
+         slip2 0 /slip2 
+      -->
+    <!-- fdir1 0 1 0 /fdir1 -->
+    <!-- see http://github.com/MobileRobots/amr-ros-config/issues/6 -->
+    <maxVel>1.0</maxVel>
+    <minDepth>0.00</minDepth>
+    <material value="Gazebo/Black"/>
+  </gazebo>
+  <gazebo reference="back_right_wheel">
+    <kp>1000000.0</kp>
+    <!-- kp and kd for rubber -->
+    <kd>100.0</kd>
+    <mu1>1.0</mu1>
+    <!-- was 10 -->
+    <mu2>1.0</mu2>
+    <!-- how to get these into <surface><friction><ode>... ?
+        slip1 0.5 /slip1 
+         slip2 0 /slip2 
+      -->
+    <!-- fdir1 0 1 0 /fdir1 -->
+    <!-- see http://github.com/MobileRobots/amr-ros-config/issues/6 -->
+    <maxVel>1.0</maxVel>
+    <minDepth>0.00</minDepth>
+    <material value="Gazebo/Black"/>
+  </gazebo>
+  <gazebo reference="front_right_wheel">
+    <kp>1000000.0</kp>
+    <!-- kp and kd for rubber -->
+    <kd>100.0</kd>
+    <mu1>1.0</mu1>
+    <!-- was 10 -->
+    <mu2>1.0</mu2>
+    <!-- how to get these into <surface><friction><ode>... ?
+        slip1 0.5 /slip1 
+         slip2 0 /slip2 
+      -->
+    <!-- fdir1 0 1 0 /fdir1 -->
+    <!-- see http://github.com/MobileRobots/amr-ros-config/issues/6 -->
+    <maxVel>1.0</maxVel>
+    <minDepth>0.00</minDepth>
+    <material value="Gazebo/Black"/>
+  </gazebo>
+
+
+
+
+  <joint type="continuous" name="front_left_wheel_hinge">
+    <origin xyz="0.3 0.4 0" rpy="0 0 0"/>
+    <child link="front_left_wheel"/>
+    <parent link="chassis"/>
+    <axis xyz="0 1 0" rpy="0 0 0"/>
+    <limit effort="100" velocity="100"/>
+    <joint_properties damping="0.0" friction="0.0"/>
+  </joint>
+
+  <joint type="fixed" name="front_left_hub_hinge">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <child link="front_left_hub"/>
+    <parent link="front_left_wheel"/>
+    <axis xyz="0 1 0" rpy="0 0 0"/>
+    <limit effort="100" velocity="100"/>
+    <joint_properties damping="0.0" friction="0.0"/>
+  </joint>
+
+  <joint type="continuous" name="front_right_wheel_hinge">
+    <origin xyz="0.3 -0.4 0" rpy="0 0 0"/>
+    <child link="front_right_wheel"/>
+    <parent link="chassis"/>
+    <axis xyz="0 1 0" rpy="0 0 0"/>
+    <limit effort="100" velocity="100"/>
+    <joint_properties damping="0.0" friction="0.0"/>
+  </joint>
+
+  <joint type="fixed" name="front_right_hub_hinge">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <child link="front_right_hub"/>
+    <parent link="front_right_wheel"/>
+    <axis xyz="0 1 0" rpy="0 0 0"/>
+    <limit effort="100" velocity="100"/>
+    <joint_properties damping="0.0" friction="0.0"/>
+  </joint>
+
+  <joint type="continuous" name="back_left_wheel_hinge">
+    <origin xyz="-0.3 0.4 0" rpy="0 0 0"/>
+    <child link="back_left_wheel"/>
+    <parent link="chassis"/>
+    <axis xyz="0 1 0" rpy="0 0 0"/>
+    <limit effort="100" velocity="100"/>
+    <joint_properties damping="0.0" friction="0.0"/>
+  </joint>
+
+  <joint type="fixed" name="back_left_hub_hinge">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <child link="back_left_hub"/>
+    <parent link="back_left_wheel"/>
+    <axis xyz="0 1 0" rpy="0 0 1.5707"/>
+    <limit effort="100" velocity="100"/>
+    <joint_properties damping="0.0" friction="0.0"/>
+  </joint>
+
+  <joint type="continuous" name="back_right_wheel_hinge">
+    <origin xyz="-0.3 -0.4 0" rpy="0 0 0"/>
+    <child link="back_right_wheel"/>
+    <parent link="chassis"/>
+    <axis xyz="0 1 0" rpy="0 0 0"/>
+    <limit effort="100" velocity="100"/>
+    <joint_properties damping="0.0" friction="0.0"/>
+  </joint>
+
+  <joint type="fixed" name="back_right_hub_hinge">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <child link="back_right_hub"/>
+    <parent link="back_right_wheel"/>
+    <axis xyz="0 1 0" rpy="0 0 1.5707"/>
+    <limit effort="100" velocity="100"/>
+    <joint_properties damping="0.0" friction="0.0"/>
+  </joint>
+
+ 
+  <!-- Camera -->
+  <link name="camera_link">
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+    <box size="0.05 0.05 0.05"/>
+      </geometry>
+    </collision>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+    <box size="0.05 0.05 0.05"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+
+    <inertial>
+      <mass value="1e-5" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+    </inertial>
+  </link>
+
+ <joint name="camera_joint" type="fixed">
+    <axis xyz="0 1 0" />
+    <origin xyz="0.5 0 0" rpy="0 0 0"/>
+    <parent link="chassis"/>
+    <child link="camera_link"/>
+  </joint>
+
+
+</robot>
